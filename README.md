@@ -16,6 +16,7 @@ Including an example of how to use your role (for instance, with variables passe
          - role: baztian.pip_venv
            vars:
              pkg: small
+             version: 0.1.0
 
 License
 -------

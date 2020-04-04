@@ -5,4 +5,4 @@
     - role: ansible-pip-venv
       vars:
         pkg: small
-
+        version: 0.1.0
