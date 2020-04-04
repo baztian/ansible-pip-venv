@@ -1,0 +1,4 @@
+---
+bin: "{{ pkg }}"
+version:
+py_version: 3

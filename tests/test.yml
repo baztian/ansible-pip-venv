@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - role: baztian.pip_venv
+      vars:
+        pkg: small
+
