@@ -11,8 +11,8 @@ jobs:
       uses: ansible/ansible-lint-action@master
       with:
         targets: "."
-    - name: Create ansible.cfg with correct roles_path
-      run: printf '[defaults]\nroles_path=../' >ansible.cfg
+    - name: Install role and it's dependencies
+      run: ansible-galaxy install git+file://${PWD}
     - name: Execute ansible playbook
       run: ansible-playbook  tests/test.yml -i tests/inventory
   release:
