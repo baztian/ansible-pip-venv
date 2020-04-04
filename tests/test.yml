@@ -2,7 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
-    - role: baztian.pip_venv
+    - role: ansible-pip-venv
       vars:
         pkg: small
 
