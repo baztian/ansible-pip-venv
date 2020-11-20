@@ -13,10 +13,9 @@ Example Playbook
       roles:
          - role: baztian.pip_venv
            vars:
-             pkg: sampleproject
-             version: 2.0.0
+             pkg: bump2version
+             version: 1.0.1
              system_site_packages: yes
-             bin: # don't link any binaries
 
 
 License
