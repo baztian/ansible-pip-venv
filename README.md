@@ -16,6 +16,8 @@ Example Playbook
              pkg: sampleproject
              version: 2.0.0
              system_site_packages: yes
+             bin: # don't link any binaries
+
 
 License
 -------
