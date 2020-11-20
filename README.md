@@ -15,6 +15,7 @@ Example Playbook
            vars:
              pkg: small
              version: 0.1.0
+             system_site_packages: yes
 
 License
 -------

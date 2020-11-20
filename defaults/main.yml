@@ -2,3 +2,4 @@
 bin: "{{ pkg }}"
 version:
 py_version: 3
+system_site_packages: yes
