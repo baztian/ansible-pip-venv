@@ -13,8 +13,8 @@ Example Playbook
       roles:
          - role: baztian.pip_venv
            vars:
-             pkg: funniest
-             version: 0.1
+             pkg: sampleproject
+             version: 2.0.0
              system_site_packages: yes
 
 License
