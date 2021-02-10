@@ -3,6 +3,8 @@
   fail:
     msg: Failed installing python package {{ pkg }}. 'version' attribute required.
   when: not version
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=3600
 - name: Install python venv for python {{ py_version }} to allow for software
         install inside virtual python environments
   apt:
