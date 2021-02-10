@@ -1,26 +1,35 @@
 name: CI
 
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+  schedule:
+    - cron: "0 7 * * 2"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: "."
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - ubuntu2004
+          - ubuntu1804
+          - debian10
+          - debian9
     steps:
-    - uses: actions/checkout@v2
-    - name: Run ansible-lint
-      uses: ansible/ansible-lint-action@master
-      with:
-        targets: "."
-    - name: Install role and it's dependencies
-      run: ansible-galaxy install git+file://${PWD}
-    - name: Execute ansible playbook
-      run: ansible-playbook tests/test.yml -i tests/inventory
-  release:
-    needs:
-      - test
-    runs-on: ubuntu-latest
-    steps:
-      - name: galaxy
-        uses: robertdebock/galaxy-action@1.0.3
-        with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
+      - uses: actions/checkout@v2
+      - name: molecule
+        uses: robertdebock/molecule-action@2.6.8

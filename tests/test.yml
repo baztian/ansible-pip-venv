@@ -1,9 +1,0 @@
----
-- hosts: localhost
-  become: yes
-  roles:
-    - role: ansible-pip-venv
-      vars:
-        pkg: bump2version
-        version: 1.0.1
-        system_site_packages: yes
