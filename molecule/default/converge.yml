@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: Include this role
+      include_role:
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+      vars:
+        pkg: bump2version
+        version: 1.0.1
+        system_site_packages: yes
