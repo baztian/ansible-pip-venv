@@ -10,21 +10,21 @@
   apt:
     pkg: python{{ py_version }}-venv
 - name: Prepare virtual env for {{ pkg }} python package version {{ version }}
-  command: python{{ py_version }} -m venv {{ "--system-site-packages" if system_site_packages }} /opt/{{ pkg }}-{{ version }}
+  command: python{{ py_version }} -m venv {{ "--system-site-packages" if system_site_packages }} /opt/{{ dir }}-{{ version }}
   args:
-    creates: /opt/{{ pkg }}-{{ version }}
+    creates: /opt/{{ dir }}-{{ version }}
 - name: Install {{ pkg }} python package version {{ version }}
-  command: /opt/{{ pkg }}-{{ version }}/bin/python -m pip install {{ pkg }}=={{ version }}
+  command: /opt/{{ dir }}-{{ version }}/bin/python -m pip install {{ pkg }}=={{ version }}
   args:
-    creates: /opt/{{ pkg }}-{{ version }}/bin/{{ bin if bin is string else bin[-1] }}
+    creates: /opt/{{ dir }}-{{ version }}/bin/{{ bin if bin is string else bin[-1] }}
 - name: Symlink default version {{ version }} for {{ pkg }} python package
   file:
-    src: "{{ pkg }}-{{ version }}"
-    dest: "/opt/{{ pkg }}"
+    src: "{{ dir }}-{{ version }}"
+    dest: "/opt/{{ dir }}"
     state: link
 - name: Symlink binary from {{ pkg }} python package
   file:
-    src: "/opt/{{ pkg }}/bin/{{ item }}"
+    src: "/opt/{{ dir }}/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
   with_items: "{{ bin }}"
