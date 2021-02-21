@@ -1,6 +1,6 @@
 ---
-bin: "{{ pkg }}"
 dir: "{{ pkg }}"
+bin: "{{ dir }}"
 version:
 py_version: 3
 system_site_packages: yes
