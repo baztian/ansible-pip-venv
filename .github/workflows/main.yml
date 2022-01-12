@@ -20,6 +20,7 @@ jobs:
         uses: ansible/ansible-lint-action@master
         with:
           targets: "."
+          override-deps: ansible-lint==5.3.2
   test:
     runs-on: ubuntu-latest
     strategy:
