@@ -14,7 +14,7 @@
   args:
     creates: /opt/{{ dir }}-{{ version }}
 - name: Install {{ pkg }} python package version {{ version }}
-  command: /opt/{{ dir }}-{{ version }}/bin/python -m pip install {{ pkg }}=={{ version }}
+  command: /opt/{{ dir }}-{{ version }}/bin/python -m pip install {{ pkg }}=={{ version }} {{ extra_pkgs | join }}
   args:
     creates: /opt/{{ dir }}-{{ version }}/bin/{{ bin if bin is string else bin[-1] }}
 - name: Symlink default version {{ version }} for {{ pkg }} python package
