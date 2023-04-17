@@ -4,7 +4,9 @@
     msg: Failed installing python package {{ pkg }}. 'version' attribute required.
   when: not version
 - name: Update apt cache.
-  apt: update_cache=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 - name: Install python venv for python {{ py_version }} to allow for software
         install inside virtual python environments
   apt:
@@ -14,7 +16,7 @@
   args:
     creates: /opt/{{ dir }}-{{ version }}
 - name: Install {{ pkg }} python package version {{ version }}
-  command: /opt/{{ dir }}-{{ version }}/bin/python -m pip install {{ pkg }}=={{ version }}
+  command: /opt/{{ dir }}-{{ version }}/bin/python -m pip install {{ pkg }}{{ "==" + version if version != 'latest' }}
   args:
     creates: /opt/{{ dir }}-{{ version }}/bin/{{ bin if bin is string else bin[-1] }}
 - name: Symlink default version {{ version }} for {{ pkg }} python package
