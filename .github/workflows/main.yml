@@ -23,10 +23,10 @@ jobs:
     strategy:
       matrix:
         distro:
+          - ubuntu2204
           - ubuntu2004
           - ubuntu1804
           - debian10
-          - debian9
     steps:
       - uses: actions/checkout@v2
       - name: molecule
